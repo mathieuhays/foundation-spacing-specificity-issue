@@ -36,10 +36,10 @@ GULP.task('scss:build:development', function() {
 	return GULP.src(SCSS_BUILD_ENTRY)
 		.pipe(SOURCEMAPS.init())
 		.pipe(SASS({
-			includePaths: [ PATH.join(__dirname, 'foundation-sites-develop/scss') ]
+			includePaths: [ PATH.join(__dirname, 'foundation-sites-develop-v6.5/scss') ]
 		}).on('error', GUTIL.log))
 		.pipe(POSTCSS([ AUTOPREFIXER({ browsers: ['> 5%', 'IE 9'] }) ]))
-		.pipe(SOURCEMAPS.write())
+		.pipe(SOURCEMAPS.write('./maps'))
 		.pipe(GULP.dest(CSS));
 });
 
@@ -56,7 +56,7 @@ GULP.task('scss:watch', [ 'scss:build:development' ], function() {
 GULP.task('scss:build:production', function() {
 	return GULP.src(SCSS_BUILD_ENTRY)
 		.pipe(SASS({
-			includePaths: [ PATH.join(__dirname, 'foundation-sites-develop/scss') ],
+			includePaths: [ PATH.join(__dirname, 'foundation-sites-develop-v6.5/scss') ],
 			outputStyle: 'compressed'
 		}).on('error', GUTIL.log))
 		.pipe(POSTCSS([ AUTOPREFIXER({ browsers: ['> 5%', 'IE 9'] }) ]))
